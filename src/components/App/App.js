@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+// COMPONENTS
+import Carousel from '../Carousel/Carousel';
+
+// CSS
 import './App.css';
 
 class App extends Component {
@@ -7,6 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>Empty Page</p>
+        <Carousel />
       </div>
     );
   }
