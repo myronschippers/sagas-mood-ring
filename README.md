@@ -56,7 +56,7 @@ Feel free to make up your own. You may need others beyond these:
 
 You can build this! Other components from Material-UI are fine.
 
-- [ ] Client-side view that displays a single image at a time, using data from database.
+- [x] Client-side view that displays a single image at a time, using data from database.
 - [ ] Each image should have an ability to cycle through to the next/previous image. These should always work -- if you hit next on the last picture, it should go to the first image.
 - [ ] With each image, users should be able to assign tags to the current image and save in the database. For base mode, duplicate tags are fine.
 - [ ] Use Sagas for API requests to your server

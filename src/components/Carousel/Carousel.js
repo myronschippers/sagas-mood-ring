@@ -14,6 +14,30 @@ class Carousel extends Component {
         })
     }
 
+    clickPrevImage = (event) => {
+        let nextImg = this.state.currentImage - 1;
+
+        if (nextImg < 0) {
+            nextImg = this.props.reduxState.images.length - 1;
+        }
+
+        this.setState({
+            currentImage: nextImg,
+        });
+    }
+
+    clickNextImage = (event) => {
+        let nextImg = this.state.currentImage + 1;
+
+        if (nextImg ===  this.props.reduxState.images.length) {
+            nextImg = 0;
+        }
+
+        this.setState({
+            currentImage: nextImg,
+        });
+    }
+
     render() {
         let imageElement = null;
         const imgData = this.props.reduxState.images[this.state.currentImage];
@@ -29,6 +53,8 @@ class Carousel extends Component {
             <div>
                 CAROUSEL
                 {imageElement}
+                <button onClick={this.clickPrevImage}>Previous</button>
+                <button onClick={this.clickNextImage}>Next</button>
             </div>
         );
     }
