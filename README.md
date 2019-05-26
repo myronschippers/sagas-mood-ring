@@ -64,9 +64,9 @@ You can build this! Other components from Material-UI are fine.
 
 ### General Tasks
 
-- [ ] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
-- [ ] Comment your code.
-- [ ] Update this README to include a description of the project in your own words.
+- [x] Commit your code frequently! You should have at 15+ commits on a project of this size. Use branches to help break down your features.
+- [x] Comment your code.
+- [x] Update this README to include a description of the project in your own words.
 
 ## Wireframes
 
