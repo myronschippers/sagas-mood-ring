@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateToProps from '../../modules/mapStateToProps';
 import SelectedImage from '../SelectedImage/SelectedImage';
+import TagsSelection from '../TagsSelection/TagsSelection';
 
 class Carousel extends Component {
     state = {
@@ -40,13 +41,18 @@ class Carousel extends Component {
 
     render() {
         let imageElement = null;
+        let tagsElement = null;
         const imgData = this.props.reduxState.images[this.state.currentImage];
 
         if (imgData != null) {
             imageElement = <SelectedImage
                 imgData={this.props.reduxState.images[this.state.currentImage]}
                 tagsList={this.props.reduxState.slctImagTags}
-            />
+            />;
+            tagsElement = <TagsSelection
+                imageId={imgData.id}
+                currTags={imgData.tags}
+            />;
         }
 
         return (
@@ -55,6 +61,7 @@ class Carousel extends Component {
                 {imageElement}
                 <button onClick={this.clickPrevImage}>Previous</button>
                 <button onClick={this.clickNextImage}>Next</button>
+                {tagsElement}
             </div>
         );
     }
