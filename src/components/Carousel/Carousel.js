@@ -46,8 +46,8 @@ class Carousel extends Component {
 
         if (imgData != null) {
             imageElement = <SelectedImage
-                imgData={this.props.reduxState.images[this.state.currentImage]}
-                tagsList={this.props.reduxState.slctImagTags}
+                imgData={imgData}
+                tagsList={imgData.tagsList}
             />;
             tagsElement = <TagsSelection
                 imageId={imgData.id}
