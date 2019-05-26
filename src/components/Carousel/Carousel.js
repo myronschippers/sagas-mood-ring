@@ -10,7 +10,7 @@ class Carousel extends Component {
 
     componentDidMount() {
         this.props.dispatch({
-            type: 'GET_IMAGES',
+            type: 'GET_IMAGES_TAGS',
         })
     }
 
@@ -51,7 +51,7 @@ class Carousel extends Component {
 
         return (
             <div>
-                CAROUSEL
+                <h2>CAROUSEL</h2>
                 {imageElement}
                 <button onClick={this.clickPrevImage}>Previous</button>
                 <button onClick={this.clickNextImage}>Next</button>

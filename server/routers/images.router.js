@@ -18,14 +18,37 @@ router.get('/', (req, res) => {
 });
 
 router.get('/withtags', (req, res) => {
-    const dbQuery = `SELECT * FROM "images"
-                    JOIN "junc_images_tags" ON "images"."id"="junc_images_tags"."image_id"
-                    JOIN "tags" ON "junc_images_tags"."tag_id"="tags"."id";`;
+    const dbQuery = `SELECT * FROM "images";`;
+    const dbJoinQuery = `SELECT "image_id", "path", "tag_id", "name" FROM "images"
+                        JOIN "junc_images_tags" ON "images"."id"="junc_images_tags"."image_id"
+                        JOIN "tags" ON "junc_images_tags"."tag_id"="tags"."id";`;
+    
+    Promise.all([
+        pool.query(dbQuery),
+        pool.query(dbJoinQuery),
+    ])
+        .then((responseSet) => {
+            console.log('get images: ', responseSet);
+            const imagesArray = responseSet[0].rows;
+            const imagesTags = responseSet[1].rows;
+            const imagesArrayDetailed = imagesArray.map((img, imgIndex) => {
+                let tagsList = imagesTags.filter((imgTag, imgTagIndex) => {
+                    return imgTag.image_id === img.id;
+                });
+                return {
+                    id: img.id,
+                    path: img.path,
+                    title: img.title,
+                    tagsList: tagsList.map(imgTag => {
+                        return {
+                            id: tag_id,
+                            name: imgTag.name,
+                        };
+                    }),
+                };
+            });
 
-    pool.query(dbQuery)
-        .then((response) => {
-            console.log('get images: ', response);
-            res.send(response.rows);
+            res.send(imagesArrayDetailed);
         })
         .catch((err) => {
             console.log('Error getting images: ', err);
