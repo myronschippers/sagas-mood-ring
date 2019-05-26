@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import mapStateToProps from '../../modules/mapStateToProps';
 import SelectedImage from '../SelectedImage/SelectedImage';
 import TagsSelection from '../TagsSelection/TagsSelection';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 class Carousel extends Component {
     state = {
@@ -58,9 +60,34 @@ class Carousel extends Component {
         return (
             <div>
                 <h2>CAROUSEL</h2>
-                {imageElement}
-                <button onClick={this.clickPrevImage}>Previous</button>
-                <button onClick={this.clickNextImage}>Next</button>
+                <Grid
+                    container
+                    justify="center"
+                    alignItems="center"
+                    spacing={2}
+                >
+                    <Grid item xs={12} sm={3}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.clickPrevImage}
+                        >
+                            Previous
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        {imageElement}
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.clickNextImage}
+                        >
+                            Next
+                        </Button>
+                    </Grid>
+                </Grid>
                 {tagsElement}
             </div>
         );
