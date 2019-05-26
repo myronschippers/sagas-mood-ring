@@ -5,6 +5,7 @@ import SelectedImage from '../SelectedImage/SelectedImage';
 import TagsSelection from '../TagsSelection/TagsSelection';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 class Carousel extends Component {
     state = {
@@ -59,7 +60,15 @@ class Carousel extends Component {
 
         return (
             <div>
-                <h2>CAROUSEL</h2>
+                <div className="vr vr_x3">
+                    <Typography
+                        variant="h3"
+                        component="h2"
+                    >
+                        Saga Mood Ring
+                    </Typography>
+                </div>
+
                 <Grid
                     container
                     justify="center"

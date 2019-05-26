@@ -22,3 +22,23 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.text-alnLeft {
+  text-align: left;
+}
+
+.vr {
+  margin-bottom: 10px;
+}
+
+.vr_x2 {
+  margin-bottom: 20px;
+}
+
+.vr_x3 {
+  margin-bottom: 30px;
+}
+
+.vr_x4 {
+  margin-bottom: 40px;
+}
