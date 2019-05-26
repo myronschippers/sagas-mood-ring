@@ -41,7 +41,7 @@ router.get('/withtags', (req, res) => {
                     title: img.title,
                     tagsList: tagsList.map(imgTag => {
                         return {
-                            id: tag_id,
+                            id: imgTag.tag_id,
                             name: imgTag.name,
                         };
                     }),
@@ -60,7 +60,7 @@ router.get('/withtags', (req, res) => {
 router.post('/addtag', (req, res) => {
     const saveData = req.body;
     const dbQuery = `INSERT INTO "junc_images_tags" ("image_id", "tag_id")
-                    VALUES $1, $2;`;
+                    VALUES ($1, $2);`;
 
     pool.query(dbQuery, [saveData.imageId, saveData.tagId])
         .then((response) => {
