@@ -13,7 +13,7 @@ class ImageTagsList extends Component {
         const {
             tags,
         } = this.props;
-        const tagItems = tags.map((tag, tagIndex) => {
+        let tagItems = tags.map((tag, tagIndex) => {
             return (
                 <Grid
                     item
@@ -23,6 +23,12 @@ class ImageTagsList extends Component {
                 </Grid>
             );
         });
+
+        if (tags.length === 0) {
+            tagItems = (
+                <Grid item>This image has not been tagged.</Grid>
+            );
+        }
 
         return (
             <Grid

@@ -18,11 +18,7 @@ class SelectedImage extends Component {
             imgData,
             tagsList,
         } = this.props;
-        let tagsListElem = null;
-
-        if (tagsList != null && tagsList.length > 0) {
-            tagsListElem = <ImageTagsList tags={tagsList}></ImageTagsList>;
-        }
+        const tagsListElem = <ImageTagsList tags={tagsList}></ImageTagsList>;
 
         return (
             <div className="text-alnLeft">
