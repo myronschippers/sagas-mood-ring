@@ -73,7 +73,7 @@ class Carousel extends Component {
                     container
                     justify="center"
                     alignItems="center"
-                    spacing={2}
+                    spacing={8}
                 >
                     <Grid item xs={12} sm={3}>
                         <Button
