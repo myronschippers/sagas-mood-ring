@@ -6,9 +6,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
 
 class SelectedImage extends Component {
+    handleDeleteTag = (event) => {
+        const tagIdx = event.target.dataset.idx;
+    }
+
+    handleClickTag = (event) => {
+        const tagIdx = event.target.dataset.idx;
+    }
+
+    removeTagFromImage(tagIndex) {
+        const tagId = this.props.imgData.tags[tagIndex].id;
+        console.log('removeTagFromImage');
+    }
+
     render() {
         const {
             imgData,
@@ -18,12 +31,18 @@ class SelectedImage extends Component {
 
         if (tagsList != null && tagsList.length > 0) {
             const tagItems = tagsList.map((tag, tagIndex) => {
-                return <li key={tagIndex}>{tag.name}</li>;
+                return <Chip
+                            key={tagIndex}
+                            data-idx={tagIndex}
+                            label={tag.name}
+                            onClick={this.handleClickTag}
+                            onDelete={this.handleDeleteTag}
+                        />;
             });
             tagsListElem = (
-                <ul>
+                <div>
                     {tagItems}
-                </ul>
+                </div>
             );
         }
 
