@@ -69,34 +69,37 @@ class Carousel extends Component {
                     </Typography>
                 </div>
 
-                <Grid
-                    container
-                    justify="center"
-                    alignItems="center"
-                    spacing={8}
-                >
-                    <Grid item xs={12} sm={3}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={this.clickPrevImage}
-                        >
-                            Previous
-                        </Button>
+                <div className="vr vr_x3">
+                    <Grid
+                        container
+                        justify="center"
+                        alignItems="center"
+                        spacing={8}
+                    >
+                        <Grid item xs={12} sm={3}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={this.clickPrevImage}
+                            >
+                                Previous
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            {imageElement}
+                        </Grid>
+                        <Grid item xs={12} sm={3}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={this.clickNextImage}
+                            >
+                                Next
+                            </Button>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={6}>
-                        {imageElement}
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={this.clickNextImage}
-                        >
-                            Next
-                        </Button>
-                    </Grid>
-                </Grid>
+                </div>
+
                 {tagsElement}
             </div>
         );
