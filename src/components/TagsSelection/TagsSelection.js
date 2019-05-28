@@ -16,6 +16,9 @@ import Grow from '@material-ui/core/Grow';
 import AddCircle from '@material-ui/icons/AddCircle';
 
 class TagsSelection extends Component {
+    state = {
+        isMenuOpen: false,
+    }
     componentDidMount() {
         this.props.dispatch({
             type: 'GET_TAGS',
@@ -35,6 +38,12 @@ class TagsSelection extends Component {
             });
         }
     }
+
+    toggleMenu = (event) => {
+
+    }
+
+    closeMenu = () => {}
 
     render() {
         const tagsListElem = this.props.reduxState.tags.map((tagData, tagIndex) => {
@@ -76,14 +85,14 @@ class TagsSelection extends Component {
 
                 <Button
                     ref={anchorRef}
-                    aria-owns={open ? 'menu-list-grow' : undefined}
+                    aria-owns={this.state.isMenuOpen ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
-                    onClick={handleToggle}
+                    onClick={this.toggleMenu}
                 >
                     Toggle Menu Grow
                 </Button>
                 <Popper
-                    open={open}
+                    open={this.state.isMenuOpen}
                     anchorEl={anchorRef.current}
                     transition
                     disablePortal
