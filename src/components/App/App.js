@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 // COMPONENTS
 import Carousel from '../Carousel/Carousel';
@@ -11,7 +12,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Carousel />
+        <Router>
+          <header className="App-header vr vr_x3">
+            <h1>Saga Mood Ring</h1>
+          </header>
+
+          <Route exact path="/" component={Carousel} />
+        </Router>
       </div>
     );
   }
