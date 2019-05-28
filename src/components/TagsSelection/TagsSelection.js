@@ -12,13 +12,21 @@ import Grid from '@material-ui/core/Grid';
 import Popper from '@material-ui/core/Popper';
 import Button from '@material-ui/core/Button';
 import Grow from '@material-ui/core/Grow';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 // material-ui icons
 import AddCircle from '@material-ui/icons/AddCircle';
 
 class TagsSelection extends Component {
-    state = {
-        isMenuOpen: false,
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isMenuOpen: false,
+            anchorRef: null,
+        }
+        // this.anchorRef = React.createRef();
     }
+
     componentDidMount() {
         this.props.dispatch({
             type: 'GET_TAGS',
@@ -36,14 +44,22 @@ class TagsSelection extends Component {
                     tagId,
                 }
             });
+            this.closeMenu();
         }
     }
 
     toggleMenu = (event) => {
-
+        this.setState({
+            isMenuOpen: !this.state.isMenuOpen,
+            anchorRef: event.currentTarget,
+        })
     }
 
-    closeMenu = () => {}
+    closeMenu = (event) => {
+        this.setState({
+            isMenuOpen: false,
+        })
+    }
 
     render() {
         const tagsListElem = this.props.reduxState.tags.map((tagData, tagIndex) => {
@@ -63,17 +79,6 @@ class TagsSelection extends Component {
                 </ListItem>
             );
         });
-        const sampleList = (
-            <Paper id="menu-list-grow">
-                <ClickAwayListener onClickAway={handleClose}>
-                <MenuList>
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
-                </MenuList>
-                </ClickAwayListener>
-            </Paper>
-        );
 
         return (
             <Grid
@@ -83,41 +88,36 @@ class TagsSelection extends Component {
             >
                 <Grid item xs={12} sm={3}>
 
-                <Button
-                    ref={anchorRef}
-                    aria-owns={this.state.isMenuOpen ? 'menu-list-grow' : undefined}
-                    aria-haspopup="true"
-                    onClick={this.toggleMenu}
-                >
-                    Toggle Menu Grow
-                </Button>
-                <Popper
-                    open={this.state.isMenuOpen}
-                    anchorEl={anchorRef.current}
-                    transition
-                    disablePortal
-                >
-                {({ TransitionProps, placement }) => (
-                    <Grow
-                    {...TransitionProps}
-                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    <Button
+                        aria-owns={this.state.isMenuOpen ? 'menu-list-grow' : undefined}
+                        aria-haspopup="true"
+                        onClick={this.toggleMenu}
                     >
-                        <Paper>
-                            <List component="ul">
-                                {tagsListElem}
-                            </List>
-                        </Paper>
-                    </Grow>
-                )}
-                </Popper>
+                        Toggle Menu Grow
+                    </Button>
+                    <Popper
+                        open={this.state.isMenuOpen}
+                        anchorEl={this.state.anchorRef}
+                        placement="top-end"
+                        transition
+                    >
+                    {({ TransitionProps }) => (
+                        <Grow
+                        {...TransitionProps}
+                        style={{ transformOrigin: 'center top' }}
+                        >
+                            <ClickAwayListener  onClickAway={this.closeMenu}>
+                            <Paper>
+                                <List component="ul">
+                                    {tagsListElem}
+                                </List>
+                            </Paper>
+                            </ClickAwayListener>
+                        </Grow>
+                    )}
+                    </Popper>
 
-                    <Paper>
-                        <List component="ul">
-                            {tagsListElem}
-                        </List>
-                    </Paper>
-
-                </Grid>
+                </Grid> 
             </Grid>
         );
     }
