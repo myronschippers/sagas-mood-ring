@@ -77,8 +77,20 @@ router.put('/', (req, res) => {
     
 });
 
-router.delete('/', (req, res) => {
+router.delete('/deletetag', (req, res) => {
+    const urlQuery = req.query;
+    const dbQuery = `DELETE FROM "junc_images_tags" 
+                    WHERE "image_id" = $1
+                    AND "tag_id" = $2;`
     
+    pool.query(dbQuery, [urlQuery.imageId, urlQuery.tagId])
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log('Error deleting to: ', err);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;

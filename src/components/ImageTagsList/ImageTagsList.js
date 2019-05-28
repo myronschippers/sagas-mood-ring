@@ -12,6 +12,7 @@ class ImageTagsList extends Component {
     render() {
         const {
             tags,
+            imageData,
         } = this.props;
         let tagItems = tags.map((tag, tagIndex) => {
             return (
@@ -19,7 +20,7 @@ class ImageTagsList extends Component {
                     item
                     key={tagIndex}
                 >
-                    <ImageTagItem tag={tag} tagIdx={tagIndex}></ImageTagItem>
+                    <ImageTagItem tag={tag} tagIdx={tagIndex} imageId={imageData.id}></ImageTagItem>
                 </Grid>
             );
         });
