@@ -9,6 +9,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Popper from '@material-ui/core/Popper';
+import Button from '@material-ui/core/Button';
+import Grow from '@material-ui/core/Grow';
 // material-ui icons
 import AddCircle from '@material-ui/icons/AddCircle';
 
@@ -51,6 +54,17 @@ class TagsSelection extends Component {
                 </ListItem>
             );
         });
+        const sampleList = (
+            <Paper id="menu-list-grow">
+                <ClickAwayListener onClickAway={handleClose}>
+                <MenuList>
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                </MenuList>
+                </ClickAwayListener>
+            </Paper>
+        );
 
         return (
             <Grid
@@ -59,6 +73,34 @@ class TagsSelection extends Component {
                 spacing={8}
             >
                 <Grid item xs={12} sm={3}>
+
+                <Button
+                    ref={anchorRef}
+                    aria-owns={open ? 'menu-list-grow' : undefined}
+                    aria-haspopup="true"
+                    onClick={handleToggle}
+                >
+                    Toggle Menu Grow
+                </Button>
+                <Popper
+                    open={open}
+                    anchorEl={anchorRef.current}
+                    transition
+                    disablePortal
+                >
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                    {...TransitionProps}
+                    style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                        <Paper>
+                            <List component="ul">
+                                {tagsListElem}
+                            </List>
+                        </Paper>
+                    </Grow>
+                )}
+                </Popper>
 
                     <Paper>
                         <List component="ul">
