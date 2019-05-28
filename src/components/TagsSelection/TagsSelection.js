@@ -14,6 +14,7 @@ import Grow from '@material-ui/core/Grow';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 // material-ui icons
 import AddCircle from '@material-ui/icons/AddCircle';
+import Lock from '@material-ui/icons/Lock';
 
 class TagsSelection extends Component {
     constructor(props) {
@@ -61,16 +62,26 @@ class TagsSelection extends Component {
     }
 
     render() {
+        const selectedTagIds = this.props.currTags.map(tagData => tagData.id);
         const tagsListElem = this.props.reduxState.tags.map((tagData, tagIndex) => {
+            let isDisabled = false;
+            let itemIconElem = <AddCircle />
+
+            if (selectedTagIds.indexOf(tagData.id) !== -1) {
+                isDisabled = true;
+                itemIconElem = <Lock />
+            }
+
             return (
                 <ListItem
                     button
+                    disabled={isDisabled}
                     key={tagIndex}
                     data-idx={tagIndex}
                     onClick={this.addTagToImage(tagIndex)}
                 >
                     <ListItemIcon>
-                        <AddCircle />
+                        {itemIconElem}
                     </ListItemIcon>
                     <ListItemText
                         primary={tagData.name}
@@ -84,7 +95,7 @@ class TagsSelection extends Component {
 
                 <Button
                     variant="contained"
-                    color="primary"
+                    color="secondary"
                     aria-label="Add"
                     aria-haspopup="true"
                     component="button"
