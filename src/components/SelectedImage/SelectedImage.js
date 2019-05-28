@@ -8,9 +8,11 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 // Components
 import ImageTagsList from '../ImageTagsList/ImageTagsList';
+import TagsSelection from '../TagsSelection/TagsSelection';
 
 class SelectedImage extends Component {
     render() {
@@ -37,7 +39,22 @@ class SelectedImage extends Component {
                         title={imgData.title}
                     />
                     <CardActions>
-                        {tagsListElem}
+                        <Grid
+                            container
+                            justify="center"
+                            alignItems="center"
+                            spacing={8}
+                        >
+                            <Grid item xs={9}>
+                                {tagsListElem}
+                            </Grid>
+                            <Grid item xs={3}>
+                                <TagsSelection
+                                    imageId={imgData.id}
+                                    currTags={tagsList}
+                                />
+                            </Grid>
+                        </Grid>
                     </CardActions>
                 </Card>
             </div>

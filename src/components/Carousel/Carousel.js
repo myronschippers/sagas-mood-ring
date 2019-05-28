@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStateToProps from '../../modules/mapStateToProps';
 import SelectedImage from '../SelectedImage/SelectedImage';
-import TagsSelection from '../TagsSelection/TagsSelection';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -44,17 +43,12 @@ class Carousel extends Component {
 
     render() {
         let imageElement = null;
-        let tagsElement = null;
         const imgData = this.props.reduxState.images[this.state.currentImage];
 
         if (imgData != null) {
             imageElement = <SelectedImage
                 imgData={imgData}
                 tagsList={imgData.tagsList}
-            />;
-            tagsElement = <TagsSelection
-                imageId={imgData.id}
-                currTags={imgData.tags}
             />;
         }
 
@@ -99,8 +93,6 @@ class Carousel extends Component {
                         </Grid>
                     </Grid>
                 </div>
-
-                {tagsElement}
             </div>
         );
     }
