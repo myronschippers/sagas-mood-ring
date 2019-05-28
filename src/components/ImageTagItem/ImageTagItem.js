@@ -7,12 +7,15 @@ import Chip from '@material-ui/core/Chip';
 
 class ImageTagItem extends Component {
     handleDeleteTag = (event) => {
-        const tagIdx = event.target.dataset.idx;
-    }
-
-    removeTagFromImage(tagIndex) {
-        const tagId = this.props.imgData.tags[tagIndex].id;
-        console.log('removeTagFromImage');
+        const tagIdx = this.props.tagIdx;
+        const tagId = this.props.imgData.tags[tagIdx].id;
+        this.props.dispatch({
+            type: 'DELETE_TAG_FROM_IMAGE',
+            payload: {
+                imageId: this.props.imgData.id,
+                tagId,
+            },
+        })
     }
 
     render() {
