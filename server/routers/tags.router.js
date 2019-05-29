@@ -13,6 +13,7 @@ router.get('/', (req, res) => {
         })
         .catch((err) => {
             console.log('Error getting images: ', err);
+            res.sendStatus(500);
         });
 });
 

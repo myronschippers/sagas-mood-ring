@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
-// COMPONENTS
-import Carousel from '../Carousel/Carousel';
-
 // CSS
 import './App.css';
+
+// COMPONENTS
+import Carousel from '../Carousel/Carousel';
+import StatsPage from '../StatsPage/StatsPage';
+import HeaderBar from '../HeaderBar/HeaderBar';
 
 class App extends Component {
   // Renders the entire app on the DOM
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <Router>
-          <header className="App-header vr vr_x3">
-            <h1>Saga Mood Ring</h1>
-          </header>
+          <HeaderBar primaryHdg="Saga Mood Ring" />
 
-          <Route exact path="/" component={Carousel} />
+          <div className="app-body">
+            <Route exact path="/" component={Carousel} />
+            <Route exact path="/stats" component={StatsPage} />
+          </div>
         </Router>
       </div>
     );

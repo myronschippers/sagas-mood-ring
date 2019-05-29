@@ -29,7 +29,7 @@ class StatsPage extends Component {
                     </div>
 
                     <div>
-                        
+                        STATS HERE
                     </div>
                 </div>
             </div>
